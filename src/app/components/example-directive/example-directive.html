@@ -1,14 +1,33 @@
-<h2>Example Directive</h2>
-<p>Hello, World!</p>
+<form>
+<div class="browser-container">
+Desktop Browsers
+  <ul>
+    <label for=""><li ng-repeat="b in vm.browserNames"><input type="checkbox" ng-click="toggle(b)"> {{b.label}}</li></label>
+  </ul>
+</div>
+<div class="browser-container">
+Mobile Browsers
+  <ul>
+      <label for=""><li ng-repeat="b in vm.mobileBrowsers"><input type="checkbox" ng-click="toggle(b)"> {{b.label}}</li></label>
+  </ul>
+</div>
+<div class="metric-container">
+Metrics
+  <ul>
+      <label for=""><li ng-repeat="b in vm.browserMetrics">
+      <input type="checkbox" ng-click="toggle(b)" ng-if="b.impressions"> Impressions
+      <input type="checkbox" ng-click="toggle(b)" ng-if="b.ctr"> Click Through Rate
+      <input type="checkbox" ng-click="toggle(b)" ng-if="b.clicks"> Clicks
+      <input type="checkbox" ng-click="toggle(b)" ng-if="b.firstQuartilePercent"> 25% Rate
+      <input type="checkbox" ng-click="toggle(b)" ng-if="b.midpointPercent"> 50% Rate
+      <input type="checkbox" ng-click="toggle(b)" ng-if="b.thirdQuartilePercent"> 75% Rate
+      <input type="checkbox" ng-click="toggle(b)" ng-if="b.completePercent"> Completion Rate
+      <input type="checkbox" ng-click="toggle(b)" ng-if="b.firstQuartileImpressions"> First Quartile
+      <input type="checkbox" ng-click="toggle(b)" ng-if="b.midpointImpressions"> Midpoint
+      <input type="checkbox" ng-click="toggle(b)" ng-if="b.thirdQuartileImpressions"> Third Quartile
+      <input type="checkbox" ng-click="toggle(b)" ng-if="b.completeImpressions"> Completions
+      </li></label>
+  </ul>
+</div>
 
-<p>Third Item Value:</p>
-<dl>
-    <dt>Padded:</dt>
-    <dd>{{vm.formattedValue}}</dd>
-    <dt>Filter:</dt>
-    <dd>{{vm.rawValue|number}}</dd>
-</dl>
-
-<ul>
-    <li ng-repeat="item in vm.data">{{item.label}}</li>
-</ul>
+</form>

@@ -33,17 +33,36 @@
 
         function postLink(scope, iEl, iAttrs, vm) {
 
+            var selectedBrowsers = {};
+            var hasSelectedBrowsers = false;
+
+          scope.toggle = function(b) {
+            if (selectedBrowsers[b.browser] == null) {
+                selectedBrowsers[b.browser] = true;
+                if(Object.keys(selectedBrowsers).length >= 1){scope.hasSelectedBrowsers = true;}
+                else{scope.hasSelectedBrowsers = false;}
+            }
+            else {
+                delete selectedBrowsers[b.browser];
+                if(Object.keys(selectedBrowsers).length >= 1){scope.hasSelectedBrowsers = true;}
+                else{scope.hasSelectedBrowsers = false;}
+            }
+           vm.selectedBrowsers = selectedBrowsers;
+           console.log(Object.keys(selectedBrowsers));
+           vm.hasSelectedBrowsers = hasSelectedBrowsers;
+        };
+
             var dataWatcher = scope.$watch("vm.data", doSomething);
 
             scope.$on("$destroy", destroyWatchers);
 
             function doSomething(newValue) {
 
-                var d3Format = d3.format("05d");
-                var value = newValue[3].value;
+                // var d3Format = d3.format("05d");
+                // var value = newValue[3].value;
 
-                vm.rawValue = value;
-                vm.formattedValue = d3Format(value);
+                // vm.rawValue = value;
+                // vm.formattedValue = d3Format(value);
 
             }
 
@@ -58,26 +77,70 @@
     }
 
     /** @ngInject */
-    function ExampleDirectiveController() {
+    function ExampleDirectiveController(MockDataBrowsers) {
 
         var vm = this;
 
-        vm.data = [{
-            label: "Item 1",
-            value: 1000
-        }, {
-            label: "Item 2",
-            value: 2000
-        }, {
-            label: "Item 3",
-            value: 3000
-        }, {
-            label: "Item 4",
-            value: 4000
-        }, {
-            label: "Item 5",
-            value: 5000
-        }];
+
+        vm.browsers = MockDataBrowsers;
+        //console.log(vm.browsers);
+
+        var browserNames = [];
+        var browserNamesMobile = [];
+        var mb = [];
+        var browserMetrics = [];
+
+         for (var i = 0; i < vm.browsers.length; i++) {
+            var browser = vm.browsers[i];
+                browserNames.push(browser);
+                browserNames.splice(4);
+                browserNamesMobile.push(browser);
+                var mb = browserNamesMobile.slice(4, 7);
+                browserMetrics.push(browser);
+                browserMetrics.splice(1);
+
+                 if(browser.browser == "chrome") {
+                    browser.label = "Chrome";
+                    browser.platform = "Desktop";
+                  }
+
+                 if(browser.browser == "ie") {
+                    browser.label = "Internet Explorer";
+                    browser.platform = "Desktop";
+                 }
+
+                 if(browser.browser == "safari") {
+                    browser.label = "Safari";
+                    browser.platform = "Desktop";
+                 }
+                
+                 if(browser.browser == "firefox") {
+                    browser.label = "Firefox";
+                    browser.platform = "Desktop";
+                 }
+
+                if(browser.browser == "chrome-mobile") {
+                    browser.label = "Chrome";
+                    browser.platform = "Desktop";
+                 }
+
+                 if(browser.browser == "androidwebkit") {
+                    browser.label = "Android Webkit";
+                    browser.platform = "Desktop";
+                 }
+                
+                 if(browser.browser == "mobile-safari") {
+                    browser.label = "Safari";
+                    browser.platform = "Desktop";
+                 }
+            
+          }
+           vm.browser = browser;
+
+           vm.browserNames = browserNames;
+           vm.mobileBrowsers = mb;
+           vm.browserMetrics = browserMetrics;
+           console.log(vm.browser);
 
     }
 
