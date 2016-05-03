@@ -1,33 +1,103 @@
 <form>
-<div class="browser-container">
-Desktop Browsers
-  <ul>
-    <label for=""><li ng-repeat="b in vm.browserNames"><input type="checkbox" ng-click="toggle(b)"> {{b.label}}</li></label>
-  </ul>
-</div>
-<div class="browser-container">
-Mobile Browsers
-  <ul>
-      <label for=""><li ng-repeat="b in vm.mobileBrowsers"><input type="checkbox" ng-click="toggle(b)"> {{b.label}}</li></label>
-  </ul>
-</div>
-<div class="metric-container">
-Metrics
-  <ul>
-      <label for=""><li ng-repeat="b in vm.browserMetrics">
-      <input type="checkbox" ng-click="toggle(b)" ng-if="b.impressions"> Impressions
-      <input type="checkbox" ng-click="toggle(b)" ng-if="b.ctr"> Click Through Rate
-      <input type="checkbox" ng-click="toggle(b)" ng-if="b.clicks"> Clicks
-      <input type="checkbox" ng-click="toggle(b)" ng-if="b.firstQuartilePercent"> 25% Rate
-      <input type="checkbox" ng-click="toggle(b)" ng-if="b.midpointPercent"> 50% Rate
-      <input type="checkbox" ng-click="toggle(b)" ng-if="b.thirdQuartilePercent"> 75% Rate
-      <input type="checkbox" ng-click="toggle(b)" ng-if="b.completePercent"> Completion Rate
-      <input type="checkbox" ng-click="toggle(b)" ng-if="b.firstQuartileImpressions"> First Quartile
-      <input type="checkbox" ng-click="toggle(b)" ng-if="b.midpointImpressions"> Midpoint
-      <input type="checkbox" ng-click="toggle(b)" ng-if="b.thirdQuartileImpressions"> Third Quartile
-      <input type="checkbox" ng-click="toggle(b)" ng-if="b.completeImpressions"> Completions
-      </li></label>
-  </ul>
-</div>
-
+    <div class="browser-container">
+        Desktop Browsers
+        <ul>
+            <label for="">
+                <li ng-repeat="b in vm.browserNames">
+                    <input type="checkbox" ng-click="toggle(b)"> {{b.label}}</li>
+            </label>
+        </ul>
+    </div>
+    <div class="browser-container">
+        Mobile Browsers
+        <ul>
+            <label for="">
+                <li ng-repeat="b in vm.mobileBrowsers">
+                    <input type="checkbox" ng-click="toggle(b)"> {{b.label}}</li>
+            </label>
+        </ul>
+    </div>
+    <div class="metric-container">
+        Metrics
+        <ul>
+            <label for="">
+                <li>
+                    <input type="checkbox" ng-if="vm.browser.impressions"> Impressions
+                    <input type="checkbox" ng-if="vm.browser.ctr"> Click Through Rate
+                    <input type="checkbox" ng-click="showClicks()" ng-if="vm.browser.clicks"> Clicks
+                    <input type="checkbox" ng-click="showFirstqPercent()" ng-if="vm.browser.firstQuartilePercent"> 25% Rate
+                    <input type="checkbox" ng-click="showMidqPercent()" ng-if="vm.browser.midpointPercent"> 50% Rate
+                    <input type="checkbox" ng-click="showThirdqPercent()" ng-if="vm.browser.thirdQuartilePercent"> 75% Rate
+                    <input type="checkbox" ng-if="vm.browser.completePercent"> Completion Rate
+                    <input type="checkbox" ng-click="showFirstQ()" ng-if="vm.browser.firstQuartileImpressions"> First Quartile
+                    <input type="checkbox" ng-click="showMid()" ng-if="vm.browser.midpointImpressions"> Midpoint
+                    <input type="checkbox" ng-click="showThirdQ()" ng-if="vm.browser.thirdQuartileImpressions"> Third Quartile
+                    <input type="checkbox" ng-click="showCompleteImpressions()" ng-if="vm.browser.completeImpressions"> Completions
+                </li>
+            </label>
+        </ul>
+    </div>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Browser</th>
+            <th>Paltform</th>
+            <th>Impressions</th>
+            <th>CTR</th>
+            <th>Completion Rate</th>
+            <th ng-show="vm.clicks">Clicks</th>
+            <th ng-show="vm.completions">Completions</th>
+            <th ng-show="vm.firstqImpressions">First Quartile</th>
+            <th ng-show="vm.firstqPercent">25% Rate</th>
+            <th ng-show="vm.midpointImpressions">Midpoint</th>
+            <th ng-show="vm.midpointPercent"> 50% Rate</th>
+            <th ng-show="vm.thirdqImpressions"> Third Quartile</th>
+            <th ng-show="vm.thirdPercent"> 75% Rate</th>
+        </tr>
+        <tr ng-repeat="b in vm.browsers | filter:searchBy()">
+            <!--  ng-class="touched()" ng-show="ticket.state != 'away' &&ticketFilter(ticket.game.display_date.substring(0,3)) || ticket.state != 'away' && ticketFilter(ticket.state) && ticket.order.state != 'external' || ticket.state != 'away' && ticketFilter(ticket.order.state) && ticket.order.state == 'external' || ticket.state != 'away' && ticketFilter(ticket.order.external_details.sub_state) && ticket.order.state == 'external'" ng-click="(user.paid_account || user.sales <= 3) ? gameView(ticket) : null" -->
+            <td>
+                {{ b.date | date:'MM-dd-yyyy' }}
+            </td>
+            <td>
+                {{ b.label }}
+            </td>
+            <td>
+                {{ b.platform }}
+            </td>
+            <td>
+                {{ b.impressions | number }}
+            </td>
+            <td>
+                {{ displayPercent(b.ctr) }}%
+            </td>
+            <td>
+                {{ displayCompletePercent(b.completePercent) }}%
+            </td>
+            <td ng-show="vm.clicks">
+                {{ b.clicks }}
+            </td>
+            <td ng-show="vm.completions">
+                {{ b.completeImpressions }}
+            </td>
+            <td ng-show="vm.firstqImpressions">
+                {{ b.firstQuartileImpressions }}
+            </td>
+            <td ng-show="vm.firstqPercent">
+                {{ displayCompletePercent(b.firstQuartilePercent) }}%
+            </td>
+            <td ng-show="vm.midpointImpressions">
+                {{ b.midpointImpressions }}
+            </td>
+            <td ng-show="vm.midpointPercent">
+                {{ displayCompletePercent(b.midpointPercent) }}%
+            </td>
+            <td ng-show="vm.thirdqImpressions">
+                {{ b.thirdQuartileImpressions }}
+            </td>
+            <td ng-show="vm.thirdPercent">
+                {{ displayCompletePercent(b.thirdQuartilePercent) }}%
+            </td>
+        </tr>
+    </table>
 </form>
