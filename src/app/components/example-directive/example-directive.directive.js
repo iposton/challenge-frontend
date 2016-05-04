@@ -52,36 +52,36 @@
                 vm.hasSelectedBrowsers = hasSelectedBrowsers;
             };
 
-            // Create a simple toggle when clicks is checked use fat arrow ES2015 syntax in place of the function key word
-            scope.showClicks = () => {
+            // Create a simple toggle when checkboxes are checked show/hide div
+            scope.showClicks = function() {
                 vm.clicks = !vm.clicks;
             }
 
-            scope.showCompleteImpressions = () => {
+            scope.showCompleteImpressions = function() {
                 vm.completions = !vm.completions;
             }
 
-            scope.showFirstqPercent = () => {
+            scope.showFirstqPercent = function() {
                 vm.firstqPercent = !vm.firstqPercent;
             }
 
-            scope.showMidqPercent = () => {
+            scope.showMidqPercent = function() {
                 vm.midpointPercent = !vm.midpointPercent;
             }
 
-            scope.showThirdqPercent = () => {
+            scope.showThirdqPercent = function() {
                 vm.thirdPercent = !vm.thirdPercent;
             }
 
-            scope.showFirstQ = () => {
+            scope.showFirstQ = function() {
                 vm.firstqImpressions = !vm.firstqImpressions;
             }
 
-            scope.showMid = () => {
+            scope.showMid = function() {
                 vm.midpointImpressions = !vm.midpointImpressions;
             }
 
-            scope.showThirdQ = () => {
+            scope.showThirdQ = function() {
                 vm.thirdqImpressions = !vm.thirdqImpressions;
             }
 
