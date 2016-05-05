@@ -54,8 +54,8 @@
             <th ng-show="vm.thirdqImpressions"> Third Quartile</th>
             <th ng-show="vm.thirdPercent"> 75% Rate</th>
         </tr>
+       
         <tr ng-repeat="b in vm.browsers | filter:searchBy()">
-            <!--  ng-class="touched()" ng-show="ticket.state != 'away' &&ticketFilter(ticket.game.display_date.substring(0,3)) || ticket.state != 'away' && ticketFilter(ticket.state) && ticket.order.state != 'external' || ticket.state != 'away' && ticketFilter(ticket.order.state) && ticket.order.state == 'external' || ticket.state != 'away' && ticketFilter(ticket.order.external_details.sub_state) && ticket.order.state == 'external'" ng-click="(user.paid_account || user.sales <= 3) ? gameView(ticket) : null" -->
             <td>
                 {{ b.date | date:'MM-dd-yyyy' }}
             </td>
@@ -99,5 +99,14 @@
                 {{ displayCompletePercent(b.thirdQuartilePercent) }}%
             </td>
         </tr>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td></td>
+          <td></td>
+          <td><div><strong>{{ getTotal() | number }}</strong></td>
+          <td><strong>%</strong></td>
+          <td><strong>%</strong></td>
+        </tr>
+
     </table>
 </form>

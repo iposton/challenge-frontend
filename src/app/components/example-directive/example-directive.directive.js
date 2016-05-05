@@ -35,19 +35,19 @@
 
             var selectedBrowsers = {};
             var hasSelectedBrowsers = false;
-
+            
             // create object when browser is checked in view
             scope.toggle = function(b) {
                 if (selectedBrowsers[b.browser] == null) {
                     selectedBrowsers[b.browser] = true;
-
+                  
                     if (Object.keys(selectedBrowsers).length >= 1) { scope.hasSelectedBrowsers = true; } else { scope.hasSelectedBrowsers = false; }
                 } else {
                     delete selectedBrowsers[b.browser];
                     if (Object.keys(selectedBrowsers).length >= 1) { scope.hasSelectedBrowsers = true; } else { scope.hasSelectedBrowsers = false; }
                 }
 
-                vm.selectedBrowsers = selectedBrowsers;
+                vm.selectedBrowsers = Object.keys(selectedBrowsers);
                 console.log(Object.keys(selectedBrowsers));
                 vm.hasSelectedBrowsers = hasSelectedBrowsers;
             };
@@ -105,6 +105,18 @@
                     }
                 }
             };
+            
+            // Get the total number for each checked browser and add each if checked total
+            scope.getTotal = function(){
+                var total = 0;
+                for(var i = 0; i < vm.browsers.length; i++){
+                    var impressions = vm.browsers[i];
+                     if (selectedBrowsers[impressions.browser] === true || Object.keys(selectedBrowsers).length == 0) {
+                        total += (impressions.impressions);
+                    }
+                }
+                return total;
+            }; 
 
             var dataWatcher = scope.$watch("vm.data", doSomething);
 
@@ -151,7 +163,7 @@
             browserNamesMobile.push(browser);
             var mb = browserNamesMobile.slice(4, 7);
             browserMetrics.push(browser);
-            //browserMetrics.splice(1);
+
 
             if (browser.browser == "chrome") {
                 browser.label = "Chrome";

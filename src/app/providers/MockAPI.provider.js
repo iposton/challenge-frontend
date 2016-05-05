@@ -18,7 +18,6 @@
     function MockAPI(MockDataBrowsers, $q, $timeout) {
 
         var config = {};
-       // console.log(config);
 
         config.get = getData;
 
