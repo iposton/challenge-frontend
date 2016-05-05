@@ -37,8 +37,137 @@
             </label>
         </ul>
     </div>
-    <table>
+    <div class="row main-title"> <h2>Total Impressions by Day<h2></div>
+    <div class="container">
+    
+      <div class="day-box">
+        <div class="title"><strong>March 1</strong></div>
+        {{ vm.totalDay | number }}
+      </div>
+      <div class="day-box">
+        <div class="title"><strong>March 2</strong></div>
+        {{ vm.totalDay2 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 3</strong></div>
+        {{ vm.totalDay3 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 4</strong></div>
+        {{ vm.totalDay4 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 5</strong></div>
+        {{ vm.totalDay5 | number }}
+      </div>
+      <div class="day-box">
+        <div class="title"><strong>March 6</strong></div>
+        {{ vm.totalDay6 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 7</strong></div>
+        {{ vm.totalDay7 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 8</strong></div>
+        {{ vm.totalDay8 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 9</strong></div>
+        {{ vm.totalDay9 | number }}
+      </div>
+      <div class="day-box">
+        <div class="title"><strong>March 10</strong></div>
+        {{ vm.totalDay10 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 11</strong></div>
+        {{ vm.totalDay11 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 12</strong></div>
+        {{ vm.totalDay12 | number }}
+      </div>
+         <div class="day-box">
+        <div class="title"><strong>March 13</strong></div>
+        {{ vm.totalDay13 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 14</strong></div>
+        {{ vm.totalDay14 | number }}
+      </div>
+      <div class="day-box">
+        <div class="title"><strong>March 15</strong></div>
+        {{ vm.totalDay15 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 16</strong></div>
+        {{ vm.totalDay16 | number }}
+      </div>
+      <div class="day-box">
+        <div class="title"><strong>March 17</strong></div>
+        {{ vm.totalDay17 | number }}
+      </div>
+      <div class="day-box">
+        <div class="title"><strong>March 18</strong></div>
+        {{ vm.totalDay18 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 19</strong></div>
+        {{ vm.totalDay19 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 20</strong></div>
+        {{ vm.totalDay20 | number }}
+      </div>
+         <div class="day-box">
+        <div class="title"><strong>March 21</strong></div>
+        {{ vm.totalDay21 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 22</strong></div>
+        {{ vm.totalDay22 | number }}
+      </div>
+      <div class="day-box">
+        <div class="title"><strong>March 23</strong></div>
+        {{ vm.totalDay23 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 24</strong></div>
+        {{ vm.totalDay24 | number }}
+      </div>
+      <div class="day-box">
+        <div class="title"><strong>March 25</strong></div>
+        {{ vm.totalDay25 | number }}
+      </div>
+         <div class="day-box">
+        <div class="title"><strong>March 26</strong></div>
+        {{ vm.totalDay26 | number }}
+      </div>
+         <div class="day-box">
+        <div class="title"><strong>March 27</strong></div>
+        {{ vm.totalDay27 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 28</strong></div>
+        {{ vm.totalDay28 | number }}
+      </div>
+      <div class="day-box">
+        <div class="title"><strong>March 29</strong></div>
+        {{ vm.totalDay29 | number }}
+      </div>
+       <div class="day-box">
+        <div class="title"><strong>March 30</strong></div>
+        {{ vm.totalDay30 | number }}
+      </div>
+      <div class="day-box">
+        <div class="title"><strong>March 31</strong></div>
+        {{ vm.totalDay31 | number }}
+      </div>
+    </div>
+    <table ng-class="getTotalDay()">
         <tr>
+
             <th>Date</th>
             <th>Browser</th>
             <th>Paltform</th>
@@ -54,7 +183,6 @@
             <th ng-show="vm.thirdqImpressions"> Third Quartile</th>
             <th ng-show="vm.thirdPercent"> 75% Rate</th>
         </tr>
-       
         <tr ng-repeat="b in vm.browsers | filter:searchBy()">
             <td>
                 {{ b.date | date:'MM-dd-yyyy' }}
