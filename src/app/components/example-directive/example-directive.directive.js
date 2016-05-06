@@ -115,7 +115,37 @@
                         total += (impressions.impressions);
                     }
                 }
+                vm.total = total;
                 return total;
+             
+            }; 
+
+              // Get the total number for each checked browser and add each if checked total
+            scope.getTotalClicks = function(){
+                var totalClicks = 0;
+                for(var i = 0; i < vm.browsers.length; i++){
+                    var clicks = vm.browsers[i];
+                     if (selectedBrowsers[clicks.browser] === true || Object.keys(selectedBrowsers).length == 0) {
+                        totalClicks += (clicks.clicks);
+                    }
+                }
+                vm.totalClicks = totalClicks;
+                return totalClicks;
+                
+            };
+
+               // Get the total number for each checked browser and add each if checked total
+            scope.getTotalCompletions = function(){
+                var totalCompletions = 0;
+                for(var i = 0; i < vm.browsers.length; i++){
+                    var completions = vm.browsers[i];
+                     if (selectedBrowsers[completions.browser] === true || Object.keys(selectedBrowsers).length == 0) {
+                        totalCompletions += (completions.completeImpressions);
+                    }
+                }
+                vm.totalCompletions = totalCompletions;
+                return totalCompletions;
+                
             }; 
 
             scope.getTotalDay = function(){

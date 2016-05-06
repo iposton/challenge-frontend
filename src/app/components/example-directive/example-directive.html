@@ -203,25 +203,25 @@
                 {{ displayCompletePercent(b.completePercent) }}%
             </td>
             <td ng-show="vm.clicks">
-                {{ b.clicks }}
+                {{ b.clicks | number }}
             </td>
             <td ng-show="vm.completions">
-                {{ b.completeImpressions }}
+                {{ b.completeImpressions | number }}
             </td>
             <td ng-show="vm.firstqImpressions">
-                {{ b.firstQuartileImpressions }}
+                {{ b.firstQuartileImpressions | number }}
             </td>
             <td ng-show="vm.firstqPercent">
                 {{ displayCompletePercent(b.firstQuartilePercent) }}%
             </td>
             <td ng-show="vm.midpointImpressions">
-                {{ b.midpointImpressions }}
+                {{ b.midpointImpressions | number }}
             </td>
             <td ng-show="vm.midpointPercent">
                 {{ displayCompletePercent(b.midpointPercent) }}%
             </td>
             <td ng-show="vm.thirdqImpressions">
-                {{ b.thirdQuartileImpressions }}
+                {{ b.thirdQuartileImpressions | number }}
             </td>
             <td ng-show="vm.thirdPercent">
                 {{ displayCompletePercent(b.thirdQuartilePercent) }}%
@@ -232,8 +232,10 @@
           <td></td>
           <td></td>
           <td><div><strong>{{ getTotal() | number }}</strong></td>
-          <td><strong>%</strong></td>
-          <td><strong>%</strong></td>
+          <td><strong>{{ displayPercent(vm.totalClicks / vm.total) }}%</strong></td>
+          <td><strong>{{ displayCompletePercent(vm.totalCompletions / vm.total) }}%</strong></td>
+          <td ng-show="vm.clicks"><strong>{{ getTotalClicks() | number }}</strong></td>
+          <td ng-show="vm.completions"><strong>{{ getTotalCompletions() | number }}</strong></td>
         </tr>
 
     </table>
